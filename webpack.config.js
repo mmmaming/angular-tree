@@ -1,6 +1,7 @@
 /**
  * Created by Ma Ming on 2016/11/22.
  */
+var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -33,11 +34,19 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel',
             },
+            // {
+            //     test: /.html$/,
+            //     loader: 'html',
+            //     // loader: 'file?name=[name].[ext]',
+            //     exclude: /node_modules/,
+            //     // include: __dirname + '/\src'
+            //     include: path.join(__dirname, 'src')
+            // },
             {
-                test: /\.tpl\.html|\.html$/,
-                loader: 'html',
+                test: /\.tpl\.html$/,
+                loader: 'file',
                 exclude: /node_modules/,
-                include: __dirname + '/src'
+                include: path.join(__dirname, 'src')
             },
             {
                 test: /\.css$/,
