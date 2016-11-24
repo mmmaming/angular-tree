@@ -1,1 +1,6 @@
-<div ng-bind="$ctrl.data"></div>
+<ul>
+    <tree-item  data1="treeItem" ng-repeat="treeItem in $ctrl.data" >
+        <div ng-transclude></div>
+        {{treeItem.name}}
+    </tree-item>
+</ul>

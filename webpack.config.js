@@ -34,16 +34,16 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel',
             },
-            // {
-            //     test: /.html$/,
-            //     loader: 'html',
-            //     // loader: 'file?name=[name].[ext]',
-            //     exclude: /node_modules/,
-            //     // include: __dirname + '/\src'
-            //     include: path.join(__dirname, 'src')
-            // },
             {
-                test: /\.tpl\.html$/,
+                test: /\.tpl.html$/,
+                loader: 'html',
+                // loader: 'file?name=[name].[ext]',
+                exclude: /node_modules/,
+                // include: __dirname + '/\src'
+                include: path.join(__dirname, 'src')
+            },
+            {
+                test: /\.url.html$/,
                 loader: 'file',
                 exclude: /node_modules/,
                 include: path.join(__dirname, 'src')
