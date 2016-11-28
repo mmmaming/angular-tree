@@ -1,1 +1,1 @@
-<tree-item  data="treeItem" ng-repeat="treeItem in data" temp="temp" ></tree-item>
+<tree-item ng-repeat="treeItem in $ctrl.data" data="treeItem" item-template="$ctrl.itemTemplate" base-scope="$ctrl.baseScope"></tree-item>

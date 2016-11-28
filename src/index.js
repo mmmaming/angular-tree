@@ -3,79 +3,54 @@ import './index.css';
 import tree from './tree';
 import treeItem from './treeItem';
 
-// angular.module('app', [tree, treeItem])
-//     .controller('myCtrl', treeFn);
-
-import './index.css';
-import tree1 from './tree1';
-import tree2 from './tree2';
-
-angular.module('app', [tree, tree1, treeItem, tree2])
+angular.module('app', [tree, treeItem])
     .controller('myCtrl', treeFn);
 treeFn.$inject = ['$scope'];
-function treeFn($scope) {
-    const vm = this;
-    vm.temp = `<div>
-                <input type="text" ng-model="data.name" ng-click="log()">
-            <div>`;
-    vm.temp1 = `<div>
-                <input type="text" ng-model="item.name" ng-click="vm.log(item)">
-            <div>`;
 
-    vm.msg = 'this is a tree';
-    vm.log = function(item){
-        console.log(item.name);
-    };
-    vm.tree = [{
-        id: 1,
-        name: '华语歌坛',
+
+function treeFn($scope) {
+    $scope._$scope = $scope;
+    $scope.itemTemplate = '<div ng-dblclick="edit()">' +
+        '<span ng-show="!durEdit">{{data.name}}</span>' +
+        '<input ng-show="durEdit" type="text" ng-model="data.name">' +
+        '</div>';
+    $scope.tree = [{
+        name: 'PC游戏',
+        num: 1,
         children: [
             {
-                id: 2,
-                name: '一线歌星',
+                name: '角色扮演',
+                num: 1,
                 children: [
                     {
-                        id: 21,
-                        name: '陈奕迅'
+                        name: '月影传说',
                     },
                     {
-                        id: 22,
-                        name: '林俊杰',
+                        name: '仙剑奇侠传',
                         children: [
                             {
-                                id: 224,
-                                name: '金莎',
+                                name: '仙剑客栈',
                                 children: []
                             },
                             {
-                                id: 225,
-                                name: '银莎',
+                                name: '仙剑问情',
                                 children: []
                             },
                             {
-                                id: 226,
-                                name: '铁莎',
+                                name: '仙剑再回首',
                                 children: []
                             }
                         ]
                     },
                     {
-                        id: 23,
-                        name: '张学友',
+                        name: '武林群侠传',
                         children: [
                             {
-                                id: 234,
-                                name: '张信哲',
+                                name: '江湖小虾米',
                                 children: []
                             },
                             {
-                                id: 235,
-                                name: '李玖哲',
-                                children: []
-                            },
-                            {
-                                id: 236,
-                                name: '赵天哲',
+                                name: '河洛英雄传',
                                 children: []
                             }
                         ]
@@ -83,26 +58,24 @@ function treeFn($scope) {
                 ]
             },
             {
-                id: 3,
-                name: '周杰伦',
+                name: '即时MOBA',
                 children: [
                     {
-                        id: 4,
-                        name: '杨宗纬',
+                        name: '星际争霸',
                         children: []
                     },
                     {
-                        id: 5,
-                        name: '庾澄庆',
+                        name: '澄海3C',
                         children: []
                     },
                     {
-                        id: 6,
-                        name: '金志文',
+                        name: '遗迹保卫战',
                         children: []
                     }
                 ]
             }
         ]
     }];
+
+
 }

@@ -1,5 +1,6 @@
 <ul>
-    <li >
-        <tree-item  ng-repeat="treeItem in data.children"  data="treeItem" temp="temp" a="a()"></tree-item>
+    <li ng-click="showChild()" ng-if="data.children&&data.children.length!==0">></li>
+    <li ng-show="childShow" ng-if="data.children&&data.children.length!==0">
+        <tree-item ng-repeat="treeItem in data.children" data="treeItem"  item-template="itemTemplate" base-scope="baseScope"></tree-item>
     </li>
 </ul>
