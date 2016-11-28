@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./angular.treeview.css">
+</head>
+<body ng-controller="myCtrl as vm">
+<div>{{vm.aa}}</div>
+<button ng-click="vm.add()">添加</button>
+<ul ng-tree="vm.tree">
+    <li select="vm.selected(item)"  ng-click="vm.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa()">
+        {{item.name}}
+        <!--<input type="text" ng-model="item.name" ng-click="vm.aa()" ng-if="vm.show" ng-dblclick="vm.show = !vm.show">-->
+        <!--<span ng-if="!vm.show" ng-dblclick="vm.show = !vm.show">{{item.name}}</span>-->
+    </li>
+</ul>
+
+<!--<pre>{{vm.tree | json }}</pre>-->
+<script src="../node_modules/angular/angular.js"></script>
+<script src="./angular.tree.js">
+</script>
+<script>
+    angular.module('app', ['angularTree']).controller('myCtrl', [function() {
+        var vm = this;
+        vm.aa = 3;
+        vm.selected = function (as) {
+            console.log(as);
+        };
+        vm.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = function() {
+            console.log('asd');
+        }
+        vm.add = function() {
+            vm.tree.push({
+                id:2,
+                name:'粤语歌坛',
+                children: []
+            })
+        };
+        vm.tree = [{
+            id: 1,
+            name: '华语歌坛',
+            children: [
+                {
+                    id: 2,
+                    name: '一线歌星',
+                    children: [
+                        {
+                            id: 21,
+                            name: '陈奕迅'
+                        },
+                        {
+                            id: 22,
+                            name: '林俊杰',
+                            children: [
+                                {
+                                    id: 224,
+                                    name: '金莎',
+                                    children: []
+                                },
+                                {
+                                    id: 225,
+                                    name: '银莎',
+                                    children: []
+                                },
+                                {
+                                    id: 226,
+                                    name: '铁莎',
+                                    children: []
+                                }
+                            ]
+                        },
+                        {
+                            id: 23,
+                            name: '张学友',
+                            children: [
+                                {
+                                    id: 234,
+                                    name: '张信哲',
+                                    children: []
+                                },
+                                {
+                                    id: 235,
+                                    name: '李玖哲',
+                                    children: []
+                                },
+                                {
+                                    id: 236,
+                                    name: '赵天哲',
+                                    children: []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    name: '周杰伦',
+                    children: [
+                        {
+                            id: 4,
+                            name: '杨宗纬',
+                            children: []
+                        },
+                        {
+                            id: 5,
+                            name: '庾澄庆',
+                            children: []
+                        },
+                        {
+                            id: 6,
+                            name: '金志文',
+                            children: []
+                        }
+                    ]
+                }
+            ]
+        }];
+    }])
+</script>
+</body>
+</html>

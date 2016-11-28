@@ -3,33 +3,19 @@
  */
 import angular from 'angular';
 import treeTpl from './tree.tpl.html';
-treeCtrl.$inject = ['$scope'];
-function treeCtrl($scope) {
-
-    const vm = this;
-    console.log(vm.data);
-    $scope.$watch(vm.data, (newValue) => {
-        console.log(newValue);
-    })
-}
-const tree = {
-    template: treeTpl,
-    controller: treeCtrl,
-    bindings: {
-      data: '='
-    },
-    transclude: true
-};
 
 export default angular.module('tree', [])
-    .directive('trans', [function() {
+    .directive('tree', [function() {
         return {
             restrict: 'EA',
+            template: treeTpl,
+            scope: {
+                data: '=',
+                temp: '='
+            },
             link: function(scope, tElement) {
-                console.log(scope);
-                console.log(tElement);
+                console.log(123);
             }
         }
     }])
-    .component('tree', tree)
     .name;
