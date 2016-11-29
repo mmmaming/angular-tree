@@ -26,6 +26,9 @@ function treeFn($scope) {
     vm.log = function(item){
         console.log(item.name);
     };
+    vm.add = function(item) {
+        console.log(item);
+    }
     vm.tree = [{
         id: 1,
         name: '华语歌坛',

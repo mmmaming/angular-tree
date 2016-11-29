@@ -11,9 +11,12 @@
     <!--<tree data="vm.tree" temp="vm.temp"></tree>-->
     <!--<tree1 data="{{vm.tree}}" temp="{{vm.temp1}}"></tree1>-->
 
-    <tree2 ng-tree="vm.tree"><li>test2222222
-        <div>adasdsa
-        <span>44444444444444</span></div>
-    </li></tree2>
+    <ul ng-tree="vm.tree">
+        <li>
+            <input type="text" ng-model="item.name" ng-dblclick="vm.add(item)">
+
+    </li>
+    </ul>
+
 </body>
 </html>
