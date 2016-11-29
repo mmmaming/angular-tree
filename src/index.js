@@ -3,12 +3,29 @@ import './index.css';
 import tree from './tree';
 import treeItem from './treeItem';
 
-angular.module('app', [tree, treeItem])
-    .controller('myCtrl', treeFn);
+// angular.module('app', [tree, treeItem])
+//     .controller('myCtrl', treeFn);
 
-function treeFn() {
+import './index.css';
+import tree1 from './tree1';
+import tree2 from './tree2';
+
+angular.module('app', [tree, tree1, treeItem, tree2])
+    .controller('myCtrl', treeFn);
+treeFn.$inject = ['$scope'];
+function treeFn($scope) {
     const vm = this;
+    vm.temp = `<div>
+                <input type="text" ng-model="data.name" ng-click="log()">
+            <div>`;
+    vm.temp1 = `<div>
+                <input type="text" ng-model="item.name" ng-click="vm.log(item)">
+            <div>`;
+
     vm.msg = 'this is a tree';
+    vm.log = function(item){
+        console.log(item.name);
+    };
     vm.tree = [{
         id: 1,
         name: '华语歌坛',
