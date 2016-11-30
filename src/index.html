@@ -7,13 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= htmlWebpackPlugin.title %></title>
 </head>
-<body ng-controller="myCtrl as vm">下面是一个tree
-<!--<tree data="vm.tree" temp="vm.temp"></tree>-->
-<!--<tree1 data="{{vm.tree}}" temp="{{vm.temp1}}"></tree1>-->
-
-<tree2 ng-tree="vm.tree"><li>test2222222
-    <div>adasdsa
-        <span>44444444444444</span></div>
-</li></tree2>
+<body ng-controller="myCtrl">
+    <tree data="tree" item-template="itemTemplate"></tree>
 </body>
 </html>

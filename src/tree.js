@@ -4,32 +4,21 @@
 import angular from 'angular';
 import treeTpl from './tree.tpl.html';
 treeCtrl.$inject = ['$scope'];
-function treeCtrl($scope) {
 
-    const vm = this;
-    console.log(vm.data);
-    $scope.$watch(vm.data, (newValue) => {
-        console.log(newValue);
-    })
+function treeCtrl($scope) {
+    this.baseScope = $scope.$parent;
+    // this.baseScope = $scope;
 }
 const tree = {
     template: treeTpl,
     controller: treeCtrl,
     bindings: {
-      data: '='
-    },
-    transclude: true
+        data: '=',
+        itemTemplate: '<'
+    }
 };
 
-export default angular.module('tree', [])
-    .directive('trans', [function() {
-        return {
-            restrict: 'EA',
-            link: function(scope, tElement) {
-                console.log(scope);
-                console.log(tElement);
-            }
-        }
-    }])
-    .component('tree', tree)
-    .name;
+export default
+    angular.module('tree', [])
+        .component('tree', tree)
+        .name;

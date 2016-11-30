@@ -1,10 +1,6 @@
-<li>
-    <!--<div trans></div>-->
-    <div ng-transclude></div>
-    <!--{{$ctrl.data1.name}}-->
-    <ul>
-        <tree-item data1="treeItem" ng-repeat="treeItem in $ctrl.data1.children">
-            <div ng-transclude></div>
-        </tree-item>
-    </ul>
-</li>
+<ul>
+    <li ng-click="showChild()" ng-if="data.children&&data.children.length!==0">></li>
+    <li ng-show="childShow" ng-if="data.children&&data.children.length!==0">
+        <tree-item ng-repeat="treeItem in data.children" data="treeItem"  item-template="itemTemplate" base-scope="baseScope"></tree-item>
+    </li>
+</ul>

@@ -2,22 +2,34 @@
  * Created by Ma Ming on 2016/11/24.
  */
 import angular from 'angular';
-import treeItemTpl from './treeItem.tpl.html';
-treeItemCtrl.$inject = ['$scope', '$compile'];
-function treeItemCtrl($scope, $compile) {
-    const vm = this;
-    // console.log(vm.data1);
-    // $compile(treeItemTpl)($scope);
-}
-const treeItem = {
-    template: treeItemTpl,
-    controller: treeItemCtrl,
-    bindings: {
-        data1: '='
-    },
-    transclude: true
-};
+import treeItemUrl from './treeItem.tpl.html'
 
 export default angular.module('treeItem', [])
-    .component('treeItem', treeItem)
+    .directive('treeItem', function ($compile) {
+        return {
+            restrict: 'E',
+            link: function (scope, element) {
+                Object.setPrototypeOf(scope, scope.baseScope);
+                element.find('ul').prepend('<li class="node-li">' + scope.itemTemplate + '</li>');
+                $compile(element.contents())(scope);
+            },
+            controller: function ($scope) {
+                $scope.childShow = false;
+                $scope.showChild = function () {
+                    $scope.childShow = !$scope.childShow;
+                };
+
+                $scope.durEdit = false;
+                $scope.edit = function () {
+                    $scope.durEdit = !$scope.durEdit;
+                };
+            },
+            template: treeItemUrl,
+            scope: {
+                data: '=',
+                itemTemplate: '<',
+                baseScope: '<'
+            }
+        };
+    })
     .name
