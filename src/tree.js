@@ -3,12 +3,12 @@
  */
 import angular from 'angular';
 import treeTpl from './tree.tpl.html';
-treeCtrl.$inject = ['$scope'];
 
+treeCtrl.$inject = ['$scope'];
 function treeCtrl($scope) {
     this.baseScope = $scope.$parent;
-    // this.baseScope = $scope;
 }
+
 const tree = {
     template: treeTpl,
     controller: treeCtrl,

@@ -8,25 +8,23 @@ export default angular.module('treeItem', [])
     .directive('treeItem', function ($compile) {
         return {
             restrict: 'E',
-            link: function (scope, element) {
+            link(scope, element) {
+                // 将父scope绑到当前scope的原型链上
                 Object.setPrototypeOf(scope, scope.baseScope);
+                // prepend将li元素添加到ul的第一个子元素，然后只编译这个li元素，防止重复编译的情况
                 element.find('ul').prepend('<li class="node-li">' + scope.itemTemplate + '</li>');
-                $compile(element.contents())(scope);
+                $compile(element.find('ul').find('li').contents())(scope);
             },
-            controller: function ($scope) {
+            controller($scope) {
                 $scope.childShow = false;
                 $scope.showChild = function () {
                     $scope.childShow = !$scope.childShow;
                 };
 
-                $scope.durEdit = false;
-                $scope.edit = function () {
-                    $scope.durEdit = !$scope.durEdit;
-                };
             },
             template: treeItemUrl,
             scope: {
-                data: '=',
+                item: '=',
                 itemTemplate: '<',
                 baseScope: '<'
             }

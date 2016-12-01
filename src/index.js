@@ -8,16 +8,17 @@ angular.module('app', [tree, treeItem])
 treeFn.$inject = ['$scope'];
 
 
-function treeFn($scope) {
-    $scope.itemTemplate = '<div ng-click="add(data)" ng-dblclick="close(data)" ng-show="!data.show">{{data.name}}</span></div><input ng-dblclick="close(data)" type="text" ng-model="data.name" ng-show="data.show">';
-    $scope.add = function(data) {
-        console.log(data);
+function treeFn() {
+    const vm = this;
+    vm.itemTemplate = '<div ng-click="vm.add(item)" ng-dblclick="vm.close(item)" ng-show="!item.show">{{item.name}}</span></div><input ng-dblclick="vm.close(item)" type="text" ng-model="item.name" ng-show="item.show">';
+    vm.add = function(item) {
+        console.log(item);
     };
-    $scope.close = function(data) {
-        data.show = !data.show;
+    vm.close = function(item) {
+        item.show = !item.show;
     };
 
-    $scope.tree = [{
+    vm.tree = [{
         name: 'PC游戏',
         num: 1,
         children: [
