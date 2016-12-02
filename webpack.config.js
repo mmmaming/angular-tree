@@ -17,7 +17,7 @@ module.exports = {
         publicPath: '/'
     },
     devServer: {
-        contentBase: "./src",//本地服务器所加载的页面所在的目录
+        contentBase: "./",//本地服务器所加载的页面所在的目录
         colors: true,//终端中输出结果为彩色
         historyApiFallback: true,//不跳转
         inline: true//实时刷新
@@ -37,9 +37,7 @@ module.exports = {
             {
                 test: /\.tpl.html$/,
                 loader: 'html',
-                // loader: 'file?name=[name].[ext]',
                 exclude: /node_modules/,
-                // include: __dirname + '/\src'
                 include: path.join(__dirname, 'src')
             },
             {
@@ -57,7 +55,11 @@ module.exports = {
             {
                 test: /\.(png|jpeg|gif)$/,
                 loaders: ['file', "url?limit=1024"]
+            },
+            { test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+                loader: 'url-loader?limit=50000&name=[path][name].[ext]'
             }
+
         ]
     },
     plugins: [

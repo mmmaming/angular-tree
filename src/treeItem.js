@@ -11,15 +11,20 @@ export default angular.module('treeItem', [])
             link(scope, element) {
                 // 将父scope绑到当前scope的原型链上
                 Object.setPrototypeOf(scope, scope.baseScope);
-                // prepend将li元素添加到ul的第一个子元素，然后只编译这个li元素，防止重复编译的情况
-                element.find('ul').prepend('<li class="node-li">' + scope.itemTemplate + '</li>');
+                element.find('ul').find('li').append(scope.itemTemplate);
+                element.find('ul').find('li').children().css({display: 'inline-block'});
                 $compile(element.find('ul').find('li').contents())(scope);
             },
-            controller($scope) {
-                $scope.childShow = false;
-                $scope.showChild = function () {
-                    $scope.childShow = !$scope.childShow;
+            controllerAs: '$ctrl',
+            controller() {
+                const vm = this;
+                vm.childShow = false;
+                vm.showChild = function () {
+                    vm.childShow = !vm.childShow;
                 };
+                vm.isLeaf = function(item) {
+                    return !item.children || item.children.length === 0;
+                }
 
             },
             template: treeItemUrl,

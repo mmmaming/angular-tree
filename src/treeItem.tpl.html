@@ -1,6 +1,9 @@
 <ul>
-    <li ng-click="showChild()" ng-if="item.children&&item.children.length!==0">></li>
-    <li ng-show="childShow" ng-if="item.children&&item.children.length!==0">
+    <li >
+        <i ng-click="$ctrl.showChild()" ng-if="!$ctrl.isLeaf(item)" class="fa" ng-class="{'fa-caret-right': !$ctrl.childShow, 'fa-caret-down': $ctrl.childShow}"></i>
+        <i ng-if="!$ctrl.isLeaf(item)" class="fa" ng-class="{'fa-folder': !$ctrl.childShow, 'fa-folder-open': $ctrl.childShow}"></i>
+    </li>
+    <li ng-show="$ctrl.childShow" ng-if="!$ctrl.isLeaf(item)">
         <tree-item ng-repeat="treeItem in item.children" item="treeItem"  item-template="itemTemplate" base-scope="baseScope"></tree-item>
     </li>
 </ul>
