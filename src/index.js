@@ -11,7 +11,7 @@ treeFn.$inject = ['$scope'];
 
 function treeFn() {
     const vm = this;
-vm.itemTemplate = '<li ng-click="vm.add(item)" ng-dblclick="vm.close(item)" ng-show="!item.show">{{item.name}}</span></li><input ng-dblclick="vm.close(item)" type="text" ng-model="item.name" ng-show="item.show">';
+vm.itemTemplate = '<div ng-click="vm.add(item)" ng-dblclick="vm.close(item)" ng-show="!item.show">{{item.name}}</span></div><input ng-dblclick="vm.close(item)" type="text" ng-model="item.name" ng-show="item.show">';
     vm.add = function(item) {
         console.log(item);
     };
