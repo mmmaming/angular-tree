@@ -3,6 +3,7 @@
  */
 import angular from 'angular';
 import treeTpl from './tree.tpl.html';
+import treeItem from './treeItem';
 
 treeCtrl.$inject = ['$scope'];
 function treeCtrl($scope) {
@@ -19,6 +20,6 @@ const tree = {
 };
 
 export default
-    angular.module('tree', [])
+    angular.module('tree', [treeItem])
         .component('tree', tree)
         .name;

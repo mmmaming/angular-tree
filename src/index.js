@@ -1,17 +1,16 @@
 import angular from 'angular';
 import './index.css';
 import tree from './tree';
-import treeItem from './treeItem';
 import '../node_modules/font-awesome/css/font-awesome.css';
 
-angular.module('app', [tree, treeItem])
+angular.module('app', [tree])
     .controller('myCtrl', treeFn);
 treeFn.$inject = ['$scope'];
 
 
 function treeFn() {
     const vm = this;
-vm.itemTemplate = '<div ng-click="vm.add(item)" ng-dblclick="vm.close(item)" ng-show="!item.show">{{item.name}}</span></div><input ng-dblclick="vm.close(item)" type="text" ng-model="item.name" ng-show="item.show">';
+    vm.itemTemplate = '<div ng-click="vm.add(item)" ng-dblclick="vm.close(item)" ng-show="!item.show">{{item.name}}</span></div><input ng-dblclick="vm.close(item)" type="text" ng-model="item.name" ng-show="item.show">';
     vm.add = function(item) {
         console.log(item);
     };
