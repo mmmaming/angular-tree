@@ -21,3 +21,6 @@ data是数据，item-template是自定义模板。
 ## 说明
 tree的内容以及操作交给用户自定义，tree只负责展示结构。
 如果觉得样式不好看的，源码随便改。
+
+##效果
+![tree](https://github.com/mmmaming/angular-tree/blob/master/tree.png?raw=true)
