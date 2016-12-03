@@ -10,18 +10,31 @@ treeFn.$inject = ['$scope'];
 
 function treeFn() {
     const vm = this;
-    vm.itemTemplate = '<div ng-click="vm.add(item)" ng-dblclick="vm.close(item)" ng-show="vm.id !== item.id">' +
-        '{{item.name}}</div>' +
-        '<input ng-dblclick="vm.close(item)" type="text" ng-model="item.name" ng-show="vm.id === item.id"><button ng-click="vm.del(item)">删除</button>';
+    vm.itemTemplate = `<div ng-class="{'cur-select' : vm.id === item.id}" ng-click="vm.add(item)" ng-dblclick="vm.edit(item)" ng-show="!item.isEdit">{{item.name}}</div>
+                        <input ng-dblclick="vm.edit(item)" type="text" ng-model="item.name" ng-show="item.isEdit">
+                        <button ng-click="vm.del(item)" ng-show="vm.id === item.id">删除</button>`;
     vm.add = function(item) {
-        console.log(item);
+        vm.id = item.id;
+        item.selected = true;
+        closeEdit(vm.tree, item);
     };
 
-    vm.close = function(item) {
-        vm.id = item.id;
+    vm.edit = function(item) {
+        closeEdit(vm.tree, item);
+        item.isEdit = !item.isEdit;
     };
     vm.del = function(item) {
         deleteItem(vm.tree, item);
+    };
+    function closeEdit (arr, item) {
+        arr.forEach((v) => {
+            if(v.id !== item.id) {
+                v.isEdit = false;
+            }
+            if (v.children && v.children.length !== 0) {
+                closeEdit(v.children, item);
+            }
+        })
     }
     function deleteItem (arr, item) {
         arr.forEach((v, i) => {

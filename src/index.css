@@ -4,3 +4,12 @@ li{
 .fa{
     color: lightblue;
 }
+button {
+    background: lightblue;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+}
+.cur-select {
+    background: lightblue;
+}
