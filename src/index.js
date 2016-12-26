@@ -9,7 +9,7 @@ treeFn.$inject = ['$scope'];
 
 
 function treeFn() {
-    console.log('测试回退');
+    console.log('测试回退啊');
     console.log('测试暂存区撤销');
     const vm = this;
     vm.itemTemplate = `<div ng-class="{'cur-select' : vm.id === item.id}" ng-click="vm.add(item)" ng-dblclick="vm.edit(item)" ng-show="!item.isEdit">{{item.name}}</div>
