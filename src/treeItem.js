@@ -11,6 +11,7 @@ export default angular.module('treeItem', [])
             link(scope, element) {
                 // 将父scope绑到当前scope的原型链上
                 Object.setPrototypeOf(scope, scope.baseScope);
+                // scope.__proto__ = scope.baseScope;
                 element.find('ul').find('li').append(scope.itemTemplate);
                 element.find('ul').find('li').children().css({display: 'inline-block'});
                 $compile(element.find('ul').find('li').contents())(scope);
